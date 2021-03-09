@@ -1,0 +1,30 @@
+{
+	"version": "1.0.0",
+	"manifest_version": 2,
+	"minimum_chrome_version": "56.0.0",
+	"name": "reminder",
+	"short_name": "reminder",
+	"description": "自定义通知，定时提醒。(只要开着浏览器，就再也不会忘事)",
+	"offline_enabled": true,
+	"icons": {
+		"128": "static/icons/icon.png"
+	},
+	"browser_action": {
+		"default_icon": {},
+		"default_popup": "index.html",
+		"default_title": ""
+	},
+	"background": {
+		"scripts": ["static/js/background.js"],
+		"persistent": false
+	},
+	"content_scripts": [
+		{
+			"matches": ["<all_urls>"],
+			"js": ["static/js/contentScript.js"]
+		}
+	],
+	"web_accessible_resources": ["static/js/*"],
+	"content_security_policy": "script-src 'self' https://at.alicdn.com 'unsafe-eval'; object-src 'self'",
+	"permissions": ["tabs", "storage", "notifications", "unlimitedStorage", "<all_urls>"]
+}
